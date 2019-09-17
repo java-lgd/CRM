@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 授权 认证 -->
+    <bean id="jdbcRealm"  class="controller.UserRealm"></bean>
+    <!-- Shiro安全管理器 -->
+    <bean id="securityManager"  class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm"  ref="jdbcRealm"></property>
+    </bean>
+    
+    <!-- 开启shiro的注解支持 -->
+	<bean id="defaultAdvisorAutoProxyCreator" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+		<!-- 必须改为true，即使用cglib方式为Action创建代理对象。默认值为false，使用JDK创建代理对象，会造成问题 -->
+		<property name="proxyTargetClass" value="true"></property>
+	</bean>
+	
+	<!-- 使用shiro框架提供的切面类，用于创建代理对象 -->
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"></bean>
+    
+     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">/mg/unauthorized</prop>
+			</props>
+		</property>
+	</bean>
+    
+    <bean id="shiroFilter"  class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager"  ref="securityManager"></property>
+        <property name="loginUrl"  value="/login.html"></property>
+        <property name="successUrl"  value="/index"></property>
+        <!-- 用户访问未对其授权的资源时，所显示的连接 -->
+        <property name="unauthorizedUrl"  value="/unauthorizedUrl"></property>
+       
+        <property name="filterChainDefinitions">
+            <value>
+           		/img=anon
+                /User/login=anon
+<!--                 /*/**=authc
+                /index.jsp=authc -->
+                /*/**=anon
+            </value>
+        </property>
+    </bean>
+</beans>
