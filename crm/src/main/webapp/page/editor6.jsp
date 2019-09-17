@@ -35,31 +35,31 @@
   <div class="layui-form-item">
     <label class="layui-form-label">创建时间</label>
     <div class="layui-input-block">
-      <input type="text" name="createdate"  autocomplete="off" placeholder="请输入" class="layui-input">
+    <input type="text" name="createdate" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">业绩时间</label>
     <div class="layui-input-block">
-      <input type="text" name="compdate"  autocomplete="off" placeholder="请输入" class="layui-input">
+    <input type="text" name="compdate" class="layui-input" id="test2" placeholder="yyyy-MM-dd">
     </div>
   </div>
    <div class="layui-form-item">
     <label class="layui-form-label">合同时间</label>
     <div class="layui-input-block">
-      <input type="text" name="orderdate"  autocomplete="off" placeholder="请输入" class="layui-input">
+    <input type="text" name="orderdate" class="layui-input" id="test3" placeholder="yyyy-MM-dd">
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">起始时间</label>
     <div class="layui-input-block">
-      <input type="text" name="orderdate"  autocomplete="off" placeholder="请输入" class="layui-input">
+    <input type="text" name="orderdate" class="layui-input" id="test4" placeholder="yyyy-MM-dd">
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">截止时间</label>
     <div class="layui-input-block">
-      <input type="text" name="orderdate"  autocomplete="off" placeholder="请输入" class="layui-input">
+    <input type="text" name="orderdate" class="layui-input" id="test5" placeholder="yyyy-MM-dd">
     </div>
   </div>
   <div class="layui-form-item">
@@ -123,6 +123,34 @@
 <script type="text/javascript">
 
 var id="${param.id}";
+
+layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  
+	  //常规用法
+	  laydate.render({
+	    elem: '#test1',
+	    trigger: 'click'
+	  });
+	  
+	  laydate.render({
+		elem: '#test2',
+	    trigger: 'click'
+	  });
+	  
+	  laydate.render({
+		elem: '#test3',
+	    trigger: 'click'
+	  });
+	  laydate.render({
+		elem: '#test4',
+	    trigger: 'click'
+	  });
+	  laydate.render({
+		elem: '#test5',
+	    trigger: 'click'
+	  });
+});
 
 layui.use(['form',], function(){
 	  var form = layui.form;

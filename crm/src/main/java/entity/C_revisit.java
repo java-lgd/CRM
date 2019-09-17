@@ -3,10 +3,11 @@ package entity;
 public class C_revisit{
 
 	private Integer id;
-	private String clientid;
+	private Integer clientid;
+	private String clientname;
 	private Integer linkstatus;
 	public static String[] links = {"秒挂","未通","有交流","深入交流"};
-	public String getLinksname() {
+	public String getLinkname() {
 		return links[linkstatus];
 	}
 	private Integer clientstatus;
@@ -16,17 +17,17 @@ public class C_revisit{
 	}
 	private Integer purposestatus;
 	public static String[] purposes = {"N","C","B","A","Y"};
-	public String getPurposessname() {
+	public String getPurposename() {
 		return purposes[purposestatus];
 	}
 	private Integer assessstatus;
 	public static String[] assess = {"截止","无果","有预约"};
-	public String getAssessstatusname() {
+	public String getAssessname() {
 		return assess[assessstatus];
 	}
 	private Integer execstatus;
 	public static String[] execs = {"正常","转出","完成"};
-	public String getExecstatusname() {
+	public String getExecname() {
 		return execs[execstatus];
 	}
 	private String askinfo;
@@ -42,11 +43,11 @@ public class C_revisit{
 		this.id = id;
 	}
 
-	public String getClientid() {
+	public Integer getClientid() {
 		return clientid;
 	}
 
-	public void setClientid(String clientid) {
+	public void setClientid(Integer clientid) {
 		this.clientid = clientid;
 	}
 
@@ -128,6 +129,14 @@ public class C_revisit{
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+
+	public String getClientname() {
+		return clientname;
+	}
+
+	public void setClientname(String clientname) {
+		this.clientname = clientname;
 	}
 
 }

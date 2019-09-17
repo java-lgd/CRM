@@ -84,6 +84,18 @@
 							"target": "_self"
 						},
 						{
+							"title": "回访表",
+							"href": "page/table8.html",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
+							"title": "预约表",
+							"href": "page/table9.html",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
 							"title": "普通表单",
 							"href": "page/form.html",
 							"icon": "fa fa-list-alt",

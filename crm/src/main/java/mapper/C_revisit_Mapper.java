@@ -17,7 +17,7 @@ public interface C_revisit_Mapper {
 	@Select("select count(*) from  C_revisit   ${where}")
 	public int getSize(@Param("where") String where);
 
-	@Select("select C_revisit.* from  C_revisit   ${where} ${limit}")
+	@Select("select C_revisit.*,c_client.name clientname from  C_revisit inner join C_client on C_revisit.clientid=C_client.id ${where} ${limit}")
 	public  List<C_revisit> getWhere(@Param("where")String where,@Param("limit")String limit);
 
 	@Select("select C_revisit.* from  C_revisit ")

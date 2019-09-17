@@ -126,7 +126,7 @@
   <div class="layui-form-item">
     <label class="layui-form-label">创建时间</label>
     <div class="layui-input-block">
-      <input type="text" name="createdate"  autocomplete="off" placeholder="请输入密码" class="layui-input">
+     <input type="text" name="createdate" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
     </div>
   </div>
   <div class="layui-form-item">
@@ -157,6 +157,15 @@
 </form>
 
 <script type="text/javascript">
+
+layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  
+	  //常规用法
+	  laydate.render({
+	    elem: '#test1'
+	  });
+});
 
 var id="${param.id}";
 
