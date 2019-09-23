@@ -15,6 +15,7 @@ public class C_order {
 	private String info;
 	private String files;
 	private String compoperatorids;
+	private String compoperatornames;
 	private String compweight;
 	private Integer status;
 	public static String[] statuses = {"Î´ÉóºË","ÒÑÉóºË","ÔÝ»ºÒµ¼¨","×÷·Ï"};
@@ -157,6 +158,14 @@ public class C_order {
 
 	public void setOperator(String operator) {
 		this.operator = operator;
+	}
+
+	public String getCompoperatornames() {
+		return compoperatornames;
+	}
+
+	public void setCompoperatornames(String compoperatornames) {
+		this.compoperatornames = compoperatornames;
 	}
 
 }

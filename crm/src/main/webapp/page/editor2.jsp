@@ -4,11 +4,12 @@
 <!DOCTYPE html >
 <html>
 <head>
-<meta charset="UTF-8">
+<me ta charset="UTF-8">
 <link href="../lib/layui-v2.5.4/css/layui.css" rel="stylesheet">
 <script type="text/javascript" src="../lib/layui-v2.5.4/layui.all.js"></script>
 <script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript" src="../js/my.js"></script>
+<script type="text/javascript" src="../js/table.js"></script>
 
 <title></title>
 </head>
@@ -113,7 +114,8 @@
   <div class="layui-form-item">
     <label class="layui-form-label">处理人</label>
     <div class="layui-input-block">
-		 <input type="text" name="operatorids"  autocomplete="off" placeholder="请输入密码" class="layui-input">   
+    	<input type="hidden" name="operatorids">
+		<input type="text" name="operatornames" readonly="readonly" autocomplete="off" placeholder="请输入" class="layui-input" id="demo">   
     </div>
   </div>
   <div class="layui-form-item">
@@ -156,6 +158,7 @@
   </div>
 </form>
 
+<script type="text/javascript" src="../js/lay-module/tableSelect/tableSelect.js"></script>
 <script type="text/javascript">
 
 layui.use('laydate', function(){
@@ -163,12 +166,12 @@ layui.use('laydate', function(){
 	  
 	  //常规用法
 	  laydate.render({
-	    elem: '#test1'
+	    elem: '#test1',
+	    trigger: 'click'
 	  });
 });
 
 var id="${param.id}";
-
 layui.use(['form',], function(){
 	  var form = layui.form;
 	  form.on('submit(demo1)', function(data){
@@ -178,6 +181,46 @@ layui.use(['form',], function(){
 			}, "json");
 		    return false;
 		  });
+});
+
+var tableSelect = layui.tableSelect;
+tableSelect.render({
+	elem: '#demo',	//定义输入框input对象
+	checkedKey: 'id' ,//表格的唯一建值，非常重要，影响到选中状态 必填
+	searchKey: 'txt',	//搜索输入框的name值 默认keyword
+	searchPlaceholder: '搜索',	//搜索输入框的提示文字 默认关键词搜索
+	table: {	//定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
+		url:'../Operator/index',
+		height:200,
+		cols: [[
+			{type: "checkbox"},
+			{field: 'id', width: 200, title: 'ID'},
+            {field: 'name', width: 200, title: '姓名'},
+            {field: 'tel', width: 180, title: '电话'},
+            {field: 'groupname', width: 180, title: '组名'}
+		]],
+		parseData:function(res){
+			return{
+
+				"count":res.count,
+				"code":res.code,
+				"msg":res.msg,
+				data:res.data
+			}
+		}
+	},
+	done: function (elem, data) {
+	//选择完后的回调，包含2个返回值 elem:返回之前input对象；data:表格返回的选中的数据 []
+	//拿到data[]后 就按照业务需求做想做的事情啦~比如加个隐藏域放ID...
+	var NEWJSON = []
+	var NEWJSON1 = []
+	layui.each(data.data,function(index,item){
+		NEWJSON.push(item.name)
+		NEWJSON1.push(item.id)
+	})
+	elem.val(NEWJSON.join(","))
+	$("[name=operatorids]").val(NEWJSON1.join(","));
+	}
 });
 
 function init(){
@@ -199,6 +242,7 @@ function init(){
 if(id.length>0){
 	init();
 }else{
+	getarray("../Client/getSexname","[name=sex]",-1);
 	getarray("../Client/getStatusname","[name=status]",0);
 	getarray("../Client/getLinkname","[name=linkstatus]",0);
 	getarray("../Client/getClientsname","[name=clientstatus]",0);
@@ -211,5 +255,6 @@ if(id.length>0){
 }
 
 </script>
+
 </body>
 </html>

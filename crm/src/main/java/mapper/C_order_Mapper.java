@@ -29,10 +29,10 @@ public interface C_order_Mapper {
 	@Delete("delete from C_order where id=#{id}")
 	public int delete(int id);
 
-	 @Insert("insert into C_order (clientid,createdate,compdate,orderdate,startdate,enddate,operatorid,info,files,compoperatorids,compweight,status,amount,comments) values(#{clientid},#{createdate},#{compdate},#{orderdate},#{startdate},#{enddate},#{operatorid},#{info},#{files},#{compoperatorids},#{compweight},#{status},#{amount},#{comments})")
+	 @Insert("insert into C_order (clientid,createdate,compdate,orderdate,startdate,enddate,operatorid,info,files,compoperatorids,compoperatornames,compweight,status,amount,comments) values(#{clientid},#{createdate},#{compdate},#{orderdate},#{startdate},#{enddate},#{operatorid},#{info},#{files},#{compoperatorids},#{compoperatornames},#{compweight},#{status},#{amount},#{comments})")
 	 public Integer insert(C_order t);
 
-	 @Update("update C_order set clientid=#{clientid},createdate=#{createdate},compdate=#{compdate},orderdate=#{orderdate},startdate=#{startdate},enddate=#{enddate},operatorid=#{operatorid},info=#{info},files=#{files},compoperatorids=#{compoperatorids},compweight=#{compweight},status=#{status},amount=#{amount},comments=#{comments} where id=#{id}")
+	 @Update("update C_order set clientid=#{clientid},createdate=#{createdate},compdate=#{compdate},orderdate=#{orderdate},startdate=#{startdate},enddate=#{enddate},operatorid=#{operatorid},info=#{info},files=#{files},compoperatorids=#{compoperatorids},compoperatornames=#{compoperatornames},compweight=#{compweight},status=#{status},amount=#{amount},comments=#{comments} where id=#{id}")
 	 public Integer update(C_order t);
 
 }
