@@ -5,14 +5,16 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-
 import entity.C_client;
 import entity.C_operator;
 import entity.C_order;
@@ -41,6 +43,21 @@ public class C_order_Controller {
 		info.setCount(service.getSize(where));
 		return info;
 	}
+	
+	@RequestMapping("table4")
+	public @ResponseBody ReturnInfo table4(Integer page,Integer limit,HttpServletRequest request,HttpSession session) {
+		ReturnInfo info = new ReturnInfo();
+		C_operator user = (C_operator) session.getAttribute("user");
+		System.out.println(user.getName());
+//		C_operator user = (C_operator) ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession(true).getAttribute("User");
+//		System.out.println(user);
+		String where = " WHERE C_order.status=1 and C_order.compoperatornames like '%"+user.getName()+"%' and C_order.compoperatorids like '%"+user.getId()+"%'";
+		String lim = info.getLimit(page, limit);
+		info.setData(service.getTable4(where,lim));
+		info.setCount(service.getSize(where));
+		return info;
+	}
+	
 	
 	@RequestMapping("sss")
 	public  @ResponseBody String aaa(@RequestParam("file") CommonsMultipartFile file,HttpServletRequest req )throws Exception {

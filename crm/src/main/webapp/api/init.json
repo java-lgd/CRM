@@ -24,6 +24,56 @@
 					"target": "_self"
 				},
 				{
+					"title": "客户池",
+					"href": "",
+					"icon": "fa fa-calendar",
+					"target": "_self",
+					"child": [
+						{
+							"title": "未分配",
+							"href": "pool/table.jsp",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
+							"title": "新分配",
+							"href": "pool/table1.jsp",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
+							"title": "预约池",
+							"href": "pool/table2.jsp",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
+							"title": "转出池",
+							"href": "pool/table3.jsp",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
+							"title": "完成池",
+							"href": "pool/table4.jsp",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
+							"title": "私人池",
+							"href": "pool/table5.jsp",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
+							"title": "公共池",
+							"href": "pool/table6.jsp",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						}
+					]
+				},
+				{
 					"title": "菜单管理",
 					"href": "page/menu.html",
 					"icon": "fa fa-window-maximize",

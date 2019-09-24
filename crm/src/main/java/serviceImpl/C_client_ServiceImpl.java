@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import entity.C_client;
+import entity.C_operator;
 import mapper.C_client_Mapper;
 import service.C_client_Service;
 
@@ -21,7 +22,19 @@ public class C_client_ServiceImpl implements C_client_Service{
 	public List<C_client> getWhere(String where, String limit) {
 		return m.getWhere(where, limit);
 	}
+	
+	public List<C_client> getTable(String where, String limit) {
+		return m.getTable(where, limit);
+	}
 
+	public  List<C_client> getTable1(String where,String limit){
+		return m.getTable1(where, limit);
+	}
+	
+	public List<C_client> getTable6(String where, String limit) {
+		return m.getTable6(where, limit);
+	}
+	
 	public List<C_client> getAll() {
 		return m.getAll();
 	}

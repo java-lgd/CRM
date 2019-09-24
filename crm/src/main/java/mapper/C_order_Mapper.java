@@ -20,6 +20,9 @@ public interface C_order_Mapper {
 	@Select("select C_order.*,C_client.name clientname,C_operator.name operator from  C_order inner join c_client on C_order.clientid=c_client.id inner join c_operator on C_order.operatorid=c_operator.id ${where} ${limit}")
 	public  List<C_order> getWhere(@Param("where")String where,@Param("limit")String limit);
 
+	@Select("select C_order.*,C_client.name clientname,C_operator.name operator from  C_order inner join c_client on C_order.clientid=c_client.id inner join c_operator on C_order.operatorid=c_operator.id ${where} ${limit}")
+	public  List<C_order> getTable4(@Param("where")String where,@Param("limit")String limit);
+	
 	@Select("select C_order.* from  C_order ")
 	public  List<C_order> getAll();
 

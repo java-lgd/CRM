@@ -26,6 +26,10 @@ public class C_operator_ServiceImpl implements C_operator_Service{
 		return m.getAll();
 	}
 
+	public C_operator getUser(C_operator u) {
+		return m.getUser(u);
+	}
+	
 	public C_operator getByid(int id) {
 		return m.getByid(id);
 	}

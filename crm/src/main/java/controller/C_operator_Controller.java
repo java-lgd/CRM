@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import entity.C_operator;
 import entity.C_workgroup;
@@ -19,6 +21,7 @@ import service.C_workgroup_Service;
 import utils.ReturnInfo;
 
 @Controller
+@SessionAttributes(value="user",types= {C_operator.class})
 @RequestMapping("Operator")
 public class C_operator_Controller {
 	
@@ -28,7 +31,8 @@ public class C_operator_Controller {
 	C_workgroup_Service gservice;
 	
 	@RequestMapping("login")
-	public @ResponseBody String login(C_operator u,/*String code,*/ ModelMap m, HttpSession s) {
+	@ResponseBody 
+	public String login(C_operator u,/*String code,*/ ModelMap m, HttpServletRequest request) {
 /*		String num = s.getAttribute("number").toString();
 		if (!num.equalsIgnoreCase(code)) {
 			System.out.println("验证码错误");
@@ -36,15 +40,20 @@ public class C_operator_Controller {
 		}
 		C_operator u=new C_operator(tel,pass);*/
 		System.out.println(u.getTel()+"--"+u.getPass());
+		HttpSession s = request.getSession(true);
 		try {
-//			SecurityUtils.getSubject().getSession().setTimeout(10000);
+			SecurityUtils.getSubject().getSession().setTimeout(60000);
 			SecurityUtils.getSubject().login(new UsernamePasswordToken(u.getTel(),u.getPass()));
 		}catch (Exception e) {
 			System.out.println("用户错误");
 			return "{\"status\":0}";
 		} 
 		System.out.println("登录成功");
-		return "{\"status\":1}";
+		C_operator curuser = service.getUser(u);
+		System.out.println(curuser.getId()+"-"+curuser.getName());
+		s.setAttribute("user",curuser);
+		
+		return "{\"status\":1,\"user\":"+u.getTel()+"}";
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import entity.C_operator;
 import entity.C_reserved;
 import mapper.C_reserved_Mapper;
 import service.C_reserved_Service;
@@ -23,6 +24,14 @@ public class C_reserved_ServiceImpl implements C_reserved_Service{
 		return m.getWhere(where, limit);
 	}
 
+	public  List<C_reserved> getTable5(String where,String limit){
+		return m.getTable5(where, limit);
+	}
+	
+	public  List<C_reserved> getTable2(String where,String limit){
+		return m.getTable2(where, limit);
+	}
+	
 	public List<C_reserved> getAll() {
 		return m.getAll();
 	}

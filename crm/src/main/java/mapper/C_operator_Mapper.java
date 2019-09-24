@@ -26,6 +26,9 @@ public interface C_operator_Mapper {
 	@Select("select C_operator.* from  C_operator ")
 	public  List<C_operator> getAll();
 
+	@Select("select * from C_operator where tel=#{tel} and pass=#{pass}")
+	public C_operator getUser(C_operator u);
+	
 	@Select("select C_operator.* from C_operator  where id=#{id}")
 	public  C_operator getByid(int id);
 

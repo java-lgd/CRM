@@ -9,16 +9,29 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
+import entity.C_operator;
 import entity.C_reserved;
 
 @Repository
 public interface C_reserved_Mapper {
-	@Select("select count(*) from  C_reserved   ${where}")
+	@Select("select count(*) from  C_reserved inner join c_client on C_reserved.clientid=C_client.id inner join c_operator a on c_reserved.operatorid=a.id inner join c_operator  b on c_reserved.execoperatorid=b.id ${where}")
 	public int getSize(@Param("where") String where);
 
 	@Select("select C_reserved.*,C_client.name clientname,a.name operator,b.name execoperator from  C_reserved inner join c_client on C_reserved.clientid=C_client.id inner join c_operator a on c_reserved.operatorid=a.id inner join c_operator  b on c_reserved.execoperatorid=b.id ${where} ${limit}")
 	public  List<C_reserved> getWhere(@Param("where")String where,@Param("limit")String limit);
 
+	@Select("select C_reserved.*,C_client.name clientname,a.name operator,b.name execoperator from  C_reserved inner join c_client on C_reserved.clientid=C_client.id inner join c_operator a on c_reserved.operatorid=a.id inner join c_operator  b on c_reserved.execoperatorid=b.id ${where} and c_reserved.type=0  ${limit}")
+	public  List<C_reserved> getTable5(@Param("where")String where,@Param("limit")String limit);
+	
+	@Select("select count(*) from  C_reserved inner join c_client on C_reserved.clientid=C_client.id inner join c_operator a on c_reserved.operatorid=a.id inner join c_operator  b on c_reserved.execoperatorid=b.id ${where} and c_reserved.type=0")
+	public int getSize5(@Param("where") String where);
+	
+	@Select("select C_reserved.*,C_client.name clientname,a.name operator,b.name execoperator from  C_reserved inner join c_client on C_reserved.clientid=C_client.id inner join c_operator a on c_reserved.operatorid=a.id inner join c_operator  b on c_reserved.execoperatorid=b.id ${where} and c_reserved.type!=0 ${limit}")
+	public  List<C_reserved> getTable2(@Param("where")String where,@Param("limit")String limit);
+	
+	@Select("select count(*) from  C_reserved inner join c_client on C_reserved.clientid=C_client.id inner join c_operator a on c_reserved.operatorid=a.id inner join c_operator  b on c_reserved.execoperatorid=b.id ${where} and c_reserved.type!=0")
+	public int getSize2(@Param("where") String where);
+	
 	@Select("select C_reserved.* from  C_reserved ")
 	public  List<C_reserved> getAll();
 

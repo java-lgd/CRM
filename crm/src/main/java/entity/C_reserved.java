@@ -12,17 +12,17 @@ public class C_reserved {
 	private Integer execoperatorid;
 	private String execoperator;
 	private Integer type;
-	public static String[] types = {"秒挂","未通","有交流","深入交流"};
+	public static String[] types = {"无后续","回访预约（默认本人）","上门预约（预约处理窗口）"};
 	public String getTypename() {
 		return types[type];
 	}
 	private Integer status;
-	public static String[] statuses = {"秒挂","未通","有交流","深入交流"};
+	public static String[] statuses = {"未处理","已处理"};
 	public String getStatusname() {
 		return statuses[status];
 	}
 	private Integer execstatus;
-	public static String[] execstatuses = {"秒挂","未通","有交流","深入交流"};
+	public static String[] execstatuses = {"正常","违约","延期","下次继续（预约表记录增加）"};
 	public String getExecstatusname() {
 		return execstatuses[execstatus];
 	}

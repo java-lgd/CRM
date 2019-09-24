@@ -10,10 +10,10 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import entity.C_client;
+import entity.C_operator;
 
 @Repository
 public interface C_client_Mapper {
-	
 	
 	@Select("select count(*) from  C_client ${where}")
 	public int getSize(@Param("where") String where);
@@ -21,6 +21,15 @@ public interface C_client_Mapper {
 	@Select("select C_client.*,C_clienttype.name clientname,c_operator.name operatorname,c_src.name srcname from  C_client inner join c_operator on C_client.createoperatorid=c_operator.id inner join c_clienttype on c_client.clienttypeid=c_clienttype.id inner join c_src on c_client.srcid=c_src.id ${where} ${limit}")
 	public  List<C_client> getWhere(@Param("where")String where,@Param("limit")String limit);
 
+	@Select("select C_client.*,C_clienttype.name clientname,c_operator.name operatorname,c_src.name srcname from  C_client inner join c_operator on C_client.createoperatorid=c_operator.id inner join c_clienttype on c_client.clienttypeid=c_clienttype.id inner join c_src on c_client.srcid=c_src.id ${where} and C_client.count=0 AND LENGTH(c_client.operatorids)=0 ${limit} ")
+	public  List<C_client> getTable(@Param("where")String where,@Param("limit")String limit);
+	
+	@Select("select C_client.*,C_clienttype.name clientname,c_operator.name operatorname,c_src.name srcname from  C_client inner join c_operator on C_client.createoperatorid=c_operator.id inner join c_clienttype on c_client.clienttypeid=c_clienttype.id inner join c_src on c_client.srcid=c_src.id ${where} and C_client.count=0  ${limit} ")
+	public  List<C_client> getTable1(@Param("where")String where,@Param("limit")String limit);
+	
+	@Select("select C_client.*,C_clienttype.name clientname,c_operator.name operatorname,c_src.name srcname from  C_client inner join c_operator on C_client.createoperatorid=c_operator.id inner join c_clienttype on c_client.clienttypeid=c_clienttype.id inner join c_src on c_client.srcid=c_src.id ${where} and C_client.count>0 and LENGTH(c_client.operatorids)=0 ${limit} ")
+	public  List<C_client> getTable6(@Param("where")String where,@Param("limit")String limit);
+	
 	@Select("select C_client.* from  C_client ")
 	public  List<C_client> getAll();
 

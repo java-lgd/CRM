@@ -199,8 +199,8 @@ body:after {
 							layer.msg("用户名或密码不正确", function() {
 								location.href = "login.html";
 							})
-						} else if (json.status == 1) {
-							location.href = "index.html";
+						} else if (json.status!=0) {
+							location.href = "index.html?user="+json.user;
 						}
 					}
 				})

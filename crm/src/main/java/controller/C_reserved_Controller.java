@@ -2,6 +2,9 @@ package controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,11 +31,43 @@ public class C_reserved_Controller {
 	C_operator_Service oservice;
 	
 	@RequestMapping("index")
-	public @ResponseBody ReturnInfo index(String txt,Integer page,Integer limit) {
+	public @ResponseBody ReturnInfo index(String txt,Integer page,Integer limit,HttpServletRequest request,HttpSession session) {
 		ReturnInfo info = new ReturnInfo();
 		String where = "";
+		if(txt!=null)
+			where = " where c_client.name like '%"+txt+"%'";
 		String lim = info.getLimit(page, limit);
 		info.setData(service.getWhere(where, lim));
+		info.setCount(service.getSize(where));
+		return info;
+	}
+	
+	//ÀΩ»À≥ÿ
+	@RequestMapping("table5")
+	public @ResponseBody ReturnInfo table5(String txt,Integer page,Integer limit,HttpServletRequest request,HttpSession session) {
+		ReturnInfo info = new ReturnInfo();
+		C_operator user = (C_operator) session.getAttribute("user");
+		System.out.println(user.getName());
+		String where = "where c_client.name like '%%' and c_reserved.operatorid="+user.getId();
+		if(txt!=null)
+			where = " where c_client.name like '%"+txt+"%' and c_reserved.operatorid="+user.getId();
+		String lim = info.getLimit(page, limit);
+		info.setData(service.getTable5(where, lim));
+		info.setCount(service.getSize(where));
+		return info;
+	}
+	
+	//‘§‘º≥ÿ
+	@RequestMapping("table2")
+	public @ResponseBody ReturnInfo table2(String txt,Integer page,Integer limit,HttpServletRequest request,HttpSession session) {
+		ReturnInfo info = new ReturnInfo();
+		C_operator user = (C_operator) session.getAttribute("user");
+		System.out.println(user.getName());
+		String where = "where c_client.name like '%%' and c_reserved.execoperatorid="+user.getId();
+		if(txt!=null)
+			where = " where c_client.name like '%"+txt+"%' and c_reserved.execoperatorid="+user.getId();
+		String lim = info.getLimit(page, limit);
+		info.setData(service.getTable2(where, lim));
 		info.setCount(service.getSize(where));
 		return info;
 	}

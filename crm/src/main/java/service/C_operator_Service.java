@@ -14,6 +14,8 @@ public interface C_operator_Service {
 
 	public  List<C_operator> getAll();
 
+	public C_operator getUser(C_operator u);
+	
 	public  C_operator getByid(int id);
 
 	public int delete(int id);

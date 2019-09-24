@@ -49,7 +49,7 @@ public class UserRealm extends AuthorizingRealm
     protected AuthenticationInfo  doGetAuthenticationInfo(AuthenticationToken  arg0)
         throws AuthenticationException
     {
-    UsernamePasswordToken token =  (UsernamePasswordToken) arg0;
+    	UsernamePasswordToken token =  (UsernamePasswordToken) arg0;
 //        String username = token.getUsername();
         // 根据username从数据库查找用户，得到密码
         // 假设找到的用户如下

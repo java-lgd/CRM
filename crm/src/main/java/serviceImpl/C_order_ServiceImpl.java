@@ -2,6 +2,7 @@ package serviceImpl;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,10 @@ public class C_order_ServiceImpl implements C_order_Service{
 
 	public List<C_order> getWhere(String where, String limit) {
 		return m.getWhere(where, limit);
+	}
+	
+	public  List<C_order> getTable4(String where,String limit){
+		return m.getTable4(where,limit);
 	}
 
 	public List<C_order> getAll() {
