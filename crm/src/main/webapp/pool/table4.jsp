@@ -40,8 +40,8 @@
         </div>
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">查看客户</a>
+            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit1">查看合同</a>
         </script>
     </div>
 </div>
@@ -55,6 +55,7 @@
 
         table.render({
             elem: '#currentTableId',
+            height:350,
             url: '../Order/table4',
             cols: [[
                 {type: "checkbox", width: 50, fixed: "left"},
@@ -72,7 +73,7 @@
                 {field: 'statusname', width: 100, title: '状态'},
                 {field: 'amount', width: 100, title: '总金额'},
                 {field: 'comments', width: 100, title: '备注'},
-                {title: '操作', minWidth: 150, templet: '#currentTableBar', fixed: "right", align: "center"}
+                {title: '操作', minWidth: 200, templet: '#currentTableBar', fixed: "right", align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 10,
@@ -116,8 +117,11 @@
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
             if (obj.event === 'edit') {
+            	openFrame('editor4.jsp?id='+data.clientid);
+            }
+            if (obj.event === 'edit1') {
             	openFrame('editor6.jsp?id='+data.id);
-            } else if (obj.event === 'delete') {
+            }else if (obj.event === 'delete') {
                 myconfirm('是否删除？', function () {
                     $.post("../Order/delete", {id : data.id}, 
 							function(json) {

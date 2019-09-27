@@ -18,7 +18,7 @@
         <fieldset class="layui-elem-field layuimini-search">
             <legend>搜索信息</legend>
             <div style="margin: 10px 10px 10px 10px">
-                <form class="layui-form layui-form-pane" action="../Client/index">
+                <form class="layui-form layui-form-pane" action="../Client/table1">
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <label class="layui-form-label">名称</label>
@@ -34,14 +34,10 @@
             </div>
         </fieldset>
 
-        <div class="layui-btn-group">
-            <button class="layui-btn data-add-btn">添加</button>
-            <button class="layui-btn layui-btn-danger data-delete-btn">删除</button>
-        </div>
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+			<a class="layui-btn layui-btn-xs data-count-edit" lay-event="info">客户信息</a>
+			<a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit1">记录回访</a>
         </script>
     </div>
 </div>
@@ -55,28 +51,17 @@
 
         table.render({
             elem: '#currentTableId',
+            height:350,
             url: '../Client/table1',
             cols: [[
                 {type: "checkbox", width: 50, fixed: "left"},
                 {field: 'name', width: 100, title: '姓名'},
                 {field: 'sexname', width: 100, title: '性别'},
-                {field: 'tel', width: 100, title: '电话'},
-                {field: 'qq', width: 100, title: 'QQ'},
-                {field: 'email', width: 100, title: 'email'},
-                {field: 'infos', width: 100, title: '其他信息'},
-                {field: 'linkname', width: 100, title: '联通状态'},
-                {field: 'clientsname', width: 100, title: '客户状态'},
-                {field: 'purposename', width: 100, title: '意向状态'},
-                {field: 'assessname', width: 100, title: '评估状态'},
-                {field: 'execname', width: 100, title: '处理状态'},
-                {field: 'statusname', width: 100, title: '状态'},
-                {field: 'clientname', width: 100, title: '客户类型'},
-                {field: 'operatornames', width: 100, title: '处理人'},
-                {field: 'operatorname', width: 100, title: '创建人'},
-                {field: 'createdate', width: 100, title: '创建时间'},
-                {field: 'srcid', width: 100, title: '来源'},
-                {field: 'comments', width: 100, title: '备注'},
-                {title: '操作', minWidth: 150, templet: '#currentTableBar', fixed: "right", align: "center"}
+                {field: 'tel', width: 150, title: '电话'},
+                {field: 'qq', width: 150, title: 'QQ'},
+                {field: 'email', width: 150, title: 'email'},
+                {field: 'srcname', width: 100, title: '来源'},
+                {title: '操作', minWidth: 200, templet: '#currentTableBar', fixed: "right", align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 10,
@@ -102,7 +87,7 @@
 
         // 监听添加操作
         $(".data-add-btn").on("click", function () {
-            openFrame("editor.jsp");
+            openFrame("editor1.jsp");
         });
 
         // 监听删除操作
@@ -119,15 +104,18 @@
 
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
-            if (obj.event === 'edit') {
-            	openFrame('editor.jsp?id='+data.id);
-            } else if (obj.event === 'delete') {
+            if (obj.event === 'edit1') {
+            	openFrame('revisit-list.jsp?clientid='+data.id);
+            }
+            if (obj.event === 'info') {
+            	openFrame('customer_look.jsp?id='+data.id);
+            }else if (obj.event === 'delete') {
                 myconfirm('是否删除？', function () {
                     $.post("../Client/delete", {id : data.id}, 
 							function(json) {
 								reload('currentTableId');
 								layer.close(layer.index);
-							}, "json");
+						}, "json");
                 });
             }
         });

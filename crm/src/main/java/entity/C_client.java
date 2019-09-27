@@ -13,32 +13,32 @@ public class C_client {
 	private String qq;
 	private String email;
 	private String infos;
-	private Integer linkstatus;
+	private Integer linkstatus=0;
 	public static String[] links = {"未指定","秒挂","未通","有交流","深入交流"};
 	public String getLinkname() {
 		return links[linkstatus];
 	}
-	private Integer clientstatus;
+	private Integer clientstatus=0;
 	public static String[] clients = {"未指定","排斥","推脱","后续","较好"};
 	public String getClientsname() {
 		return clients[clientstatus];
 	}
-	private Integer purposestatus;
+	private Integer purposestatus=0;
 	public static String[] purposes = {"未指定","N","C","B","A","Y"};
 	public String getPurposename() {
 		return purposes[purposestatus];
 	}
-	private Integer assessstatus;
+	private Integer assessstatus=0;
 	public static String[] assess = {"未指定","截止","无果","有预约"};
 	public String getAssessname() {
 		return assess[assessstatus];
 	}
-	private Integer execstatus;
+	private Integer execstatus=0;
 	public static String[] execs = {"正常","转出","完成"};
 	public String getExecname() {
 		return execs[execstatus];
 	}
-	private Integer status;
+	private Integer status=2;
 	public static String[] statuses = {"正常","公共","资料不全","无效"};
 	public String getStatusname() {
 		return statuses[status];
@@ -54,6 +54,12 @@ public class C_client {
 	private String srcname;
 	private Integer count;
 	private String comments;
+	
+	private Integer uploadstatus=0;
+	public String getUploadstatusname() {
+		return uploadstatus==0?"未上传":"成功";
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -244,6 +250,14 @@ public class C_client {
 
 	public void setOperatornames(String operatornames) {
 		this.operatornames = operatornames;
+	}
+
+	public int getUploadstatus() {
+		return uploadstatus;
+	}
+
+	public void setUploadstatus(int uploadstatus) {
+		this.uploadstatus = uploadstatus;
 	}
 
 }

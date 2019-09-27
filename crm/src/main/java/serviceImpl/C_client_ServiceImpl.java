@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import entity.C_client;
-import entity.C_operator;
 import mapper.C_client_Mapper;
 import service.C_client_Service;
 
@@ -19,6 +17,8 @@ public class C_client_ServiceImpl implements C_client_Service{
 		return m.getSize(where);
 	}
 
+	
+	
 	public List<C_client> getWhere(String where, String limit) {
 		return m.getWhere(where, limit);
 	}
@@ -55,4 +55,7 @@ public class C_client_ServiceImpl implements C_client_Service{
 		return m.update(t);
 	}
 
+	public Integer update1(Integer id,String operatorids,String operatornames) {
+		return m.update1(id, operatorids, operatornames);
+	}
 }

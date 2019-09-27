@@ -21,13 +21,13 @@ public interface C_client_Mapper {
 	@Select("select C_client.*,C_clienttype.name clientname,c_operator.name operatorname,c_src.name srcname from  C_client inner join c_operator on C_client.createoperatorid=c_operator.id inner join c_clienttype on c_client.clienttypeid=c_clienttype.id inner join c_src on c_client.srcid=c_src.id ${where} ${limit}")
 	public  List<C_client> getWhere(@Param("where")String where,@Param("limit")String limit);
 
-	@Select("select C_client.*,C_clienttype.name clientname,c_operator.name operatorname,c_src.name srcname from  C_client inner join c_operator on C_client.createoperatorid=c_operator.id inner join c_clienttype on c_client.clienttypeid=c_clienttype.id inner join c_src on c_client.srcid=c_src.id ${where} and C_client.count=0 AND LENGTH(c_client.operatorids)=0 ${limit} ")
+	@Select("select C_client.*,C_clienttype.name clientname,c_operator.name operatorname,c_src.name srcname from  C_client inner join c_operator on C_client.createoperatorid=c_operator.id inner join c_clienttype on c_client.clienttypeid=c_clienttype.id inner join c_src on c_client.srcid=c_src.id ${where} and C_client.count=0 AND (LENGTH(c_client.operatorids)=0 or c_client.operatorids is null) ${limit} ")
 	public  List<C_client> getTable(@Param("where")String where,@Param("limit")String limit);
 	
 	@Select("select C_client.*,C_clienttype.name clientname,c_operator.name operatorname,c_src.name srcname from  C_client inner join c_operator on C_client.createoperatorid=c_operator.id inner join c_clienttype on c_client.clienttypeid=c_clienttype.id inner join c_src on c_client.srcid=c_src.id ${where} and C_client.count=0  ${limit} ")
 	public  List<C_client> getTable1(@Param("where")String where,@Param("limit")String limit);
 	
-	@Select("select C_client.*,C_clienttype.name clientname,c_operator.name operatorname,c_src.name srcname from  C_client inner join c_operator on C_client.createoperatorid=c_operator.id inner join c_clienttype on c_client.clienttypeid=c_clienttype.id inner join c_src on c_client.srcid=c_src.id ${where} and C_client.count>0 and LENGTH(c_client.operatorids)=0 ${limit} ")
+	@Select("select C_client.* from C_client ${where} and C_client.count>0 and LENGTH(c_client.operatorids)=0 ${limit} ")
 	public  List<C_client> getTable6(@Param("where")String where,@Param("limit")String limit);
 	
 	@Select("select C_client.* from  C_client ")
@@ -45,5 +45,10 @@ public interface C_client_Mapper {
 	 @Update("update C_client set name=#{name},sex=#{sex},tel=#{tel},qq=#{qq},email=#{email},infos=#{infos},linkstatus=#{linkstatus},clientstatus=#{clientstatus},purposestatus=#{purposestatus},assessstatus=#{assessstatus},execstatus=#{execstatus},status=#{status},clienttypeid=#{clienttypeid},operatorids=#{operatorids},operatornames=#{operatornames},createoperatorid=#{createoperatorid},createdate=#{createdate},srcid=#{srcid},count=#{count},comments=#{comments} where id=#{id}")
 	 public Integer update(C_client t);
 
+	 @Select("select C_client.* from C_client  where tel=#{tel}")
+	public C_client getByTel(String tel);
+
+	 @Update("updata C_client set operatorids=#{operatorids},operatornames=#{operatornames} where id=#{id}")
+	 public Integer update1(Integer id,String operatorids,String operatornames);
 
 }

@@ -41,5 +41,17 @@ public class C_revisit_ServiceImpl implements C_revisit_Service{
 	public Integer update(C_revisit t) {
 		return m.update(t);
 	}
+	
+	public  C_revisit getByclientid(int clientid) {
+		return m.getByclientid(clientid);
+	}
+
+	public List<C_revisit> getWhere1(int clientid, String limit) {
+		return m.getWhere1(clientid, limit);
+	}
+
+	public int getSize1(int clientid) {
+		return m.getSize1(clientid);
+	}
 
 }

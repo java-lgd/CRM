@@ -8,7 +8,7 @@
 		"href": "page/welcome-1.html?mpi=m-p-i-0"
 	},
 	"logoInfo": {
-		"title": "LayuiMini",
+		"title": "CRM客户关系管理",
 		"image": "images/logo.png",
 		"href": ""
 	},
@@ -22,6 +22,98 @@
 					"href": "page/welcome-1.html",
 					"icon": "fa fa-tachometer",
 					"target": "_self"
+				},
+				{
+					"title": "员工部门",
+					"href": "",
+					"icon": "fa fa-calendar",
+					"target": "_self",
+					"child": [
+						{
+							"title": "操作员",
+							"href": "page/table.html",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
+							"title": "分组",
+							"href": "page/table4.html",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						}
+					]
+				},
+				{
+					"title": "客户信息",
+					"href": "",
+					"icon": "fa fa-calendar",
+					"target": "_self",
+					"child": [
+						{
+							"title": "客户",
+							"href": "page/table2.html",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
+							"title": "客户类别",
+							"href": "page/table3.html",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
+							"title": "来源",
+							"href": "page/table5.html",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						}
+					]
+				},
+				{
+					"title": "合同产品",
+					"href": "",
+					"icon": "fa fa-calendar",
+					"target": "_self",
+					"child": [
+						{
+							"title": "合同",
+							"href": "page/table6.html",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
+							"title": "合同明细",
+							"href": "page/table7.html",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
+							"title": "产品",
+							"href": "page/table10.html",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						}
+					]
+				},
+				{
+					"title": "回访预约",
+					"href": "",
+					"icon": "fa fa-calendar",
+					"target": "_self",
+					"child": [
+						{
+							"title": "回访表",
+							"href": "page/table8.html",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						},
+						{
+							"title": "预约表",
+							"href": "page/table9.html",
+							"icon": "fa fa-file-text",
+							"target": "_self"
+						}
+					]
 				},
 				{
 					"title": "客户池",
@@ -44,12 +136,6 @@
 						{
 							"title": "预约池",
 							"href": "pool/table2.jsp",
-							"icon": "fa fa-file-text",
-							"target": "_self"
-						},
-						{
-							"title": "转出池",
-							"href": "pool/table3.jsp",
 							"icon": "fa fa-file-text",
 							"target": "_self"
 						},

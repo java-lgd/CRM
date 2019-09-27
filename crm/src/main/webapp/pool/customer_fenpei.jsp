@@ -11,7 +11,7 @@
 <script type="text/javascript" src="../js/my.js"></script>
 <script type="text/javascript" src="../js/table.js"></script>
 
-<title></title>
+<title>分配</title>
 </head>
 <body>
 <style>
@@ -29,85 +29,93 @@
   <div class="layui-form-item">
     <label class="layui-form-label">姓名</label>
     <div class="layui-input-block">
-      <input type="text" name="name"  autocomplete="off" placeholder="请输入姓名" class="layui-input">
+      <input type="text" name="name" readonly="readonly" autocomplete="off" placeholder="请输入标题" class="layui-input">
     </div>
   </div>
-     <div class="layui-form-item">
+     <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">性别</label>
     <div class="layui-input-block">
-      <select name="sex" >
+      <select name="sex" disabled="disabled">
       </select>
     </div>
-  <div class="layui-form-item">
+    </div>
+  <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">电话</label>
     <div class="layui-input-block">
-      <input type="text" name="tel"  autocomplete="off" placeholder="请输入电话" class="layui-input">
+      <input type="text" name="tel" readonly="readonly" autocomplete="off" placeholder="请输入电话" class="layui-input">
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">QQ</label>
     <div class="layui-input-block">
-      <input type="text" name="qq"  autocomplete="off" placeholder="请输入QQ" class="layui-input">
+      <input type="text" name="qq" readonly="readonly" autocomplete="off" placeholder="请输入密码" class="layui-input">
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">email</label>
     <div class="layui-input-block">
-      <input type="text" name="email"  autocomplete="off" placeholder="请输入email" class="layui-input">
+      <input type="text" name="email" readonly="readonly" autocomplete="off" placeholder="请输入密码" class="layui-input">
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">其他信息</label>
     <div class="layui-input-block">
-      <input type="text" name="infos"  autocomplete="off" placeholder="其他信息" class="layui-input">
+      <input type="text" name="infos"  autocomplete="off" placeholder="请输入密码" class="layui-input">
     </div>
   </div>
-   <div class="layui-form-item">
+  <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">联通状态</label>
     <div class="layui-input-block">
-      <select name="linkstatus" >
+      <select name="linkstatus" disabled="disabled">
       </select>
     </div>
   </div>
-   <div class="layui-form-item">
+   <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">客户状态</label>
     <div class="layui-input-block">
-      <select name="clientstatus" >
+      <select name="clientstatus" disabled="disabled">
       </select>
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">意向状态</label>
     <div class="layui-input-block">
-      <select name="purposestatus" >
+      <select name="purposestatus" disabled="disabled">
       </select>
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">评估状态</label>
     <div class="layui-input-block">
-      <select name="assessstatus" >
+      <select name="assessstatus" disabled="disabled">
       </select>
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">状态</label>
     <div class="layui-input-block">
-      <select name="execstatus" >
+      <select name="execstatus" disabled="disabled">
       </select>
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">资料状态</label>
     <div class="layui-input-block">
-      <select name="status" >
+      <select name="status" disabled="disabled">
       </select>
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">客户类型</label>
     <div class="layui-input-block">
-      <select name="clienttypeid" >
+      <select name="clienttypeid" disabled="disabled">
+      </select>
+    </div>
+  </div>
+  <div class="layui-form-item" style="display:none;">
+    <label class="layui-form-label">来源</label>
+    <div class="layui-input-block">
+      <select name="srcid" disabled="disabled">
       </select>
     </div>
   </div>
@@ -115,39 +123,32 @@
     <label class="layui-form-label">处理人</label>
     <div class="layui-input-block">
     	<input type="hidden" name="operatorids">
-		<input type="text" name="operatornames" readonly="readonly" autocomplete="off" placeholder="请输入" class="layui-input" id="demo">   
+		<input type="text" name="operatornames"  autocomplete="off" placeholder="请输入" class="layui-input" id="demo">   
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">创建人</label>
     <div class="layui-input-block">
-			<select name="createoperatorid" >
+			<select name="createoperatorid" disabled="disabled">
      	 </select>  
      </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">创建时间</label>
     <div class="layui-input-block">
      <input type="text" name="createdate" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
     </div>
   </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">来源</label>
-    <div class="layui-input-block">
-      <select name="srcid" >
-      </select>
-    </div>
-  </div>
-  <div class="layui-form-item">
+  <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">回访次数</label>
     <div class="layui-input-block">
-      <input type="text" name="count"  autocomplete="off" placeholder="回访次数" class="layui-input">
+      <input type="text" name="count"  autocomplete="off" placeholder="请输入密码" class="layui-input">
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-form-item" >
     <label class="layui-form-label">备注</label>
     <div class="layui-input-block">
-      <input type="text" name="comments"  autocomplete="off" placeholder="备注" class="layui-input">
+      <input type="text" name="comments"  autocomplete="off" placeholder="备注信息" class="layui-input">
     </div>
   </div>
   

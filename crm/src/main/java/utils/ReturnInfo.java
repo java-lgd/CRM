@@ -8,6 +8,13 @@ public class ReturnInfo {
 	private String msg="";
 	private List<?> data;
 	
+	public ReturnInfo() {
+		// TODO Auto-generated constructor stub
+	}
+public ReturnInfo(List<?> data) {
+	this.count=data.size();
+	this.data=data;
+}
 	public String getLimit(Integer page,Integer max) {
 		if(page==null) return "";
 		return " limit "+((page-1)*max)+","+max;

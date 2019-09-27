@@ -25,23 +25,34 @@
                             <div class="layui-input-inline">
                                 <input id="seach" type="text" name="name" autocomplete="off" class="layui-input">
                             </div>
-                        </div>
+			<label class="layui-form-label">活动时间</label>
+				<div class="layui-input-inline">
+						<input type="text" id="start_time" name="start_time" autocomplete="off" placeholder="请输入开始时间" class="layui-input">
+				</div>
+				<div class="layui-input-inline">
+						<input type="text" id="end_time" name="end_time" autocomplete="off" placeholder="请输入结束时间" class="layui-input">
+				</div>
+			</div>
+                        
                         <div class="layui-inline">
                             <a class="layui-btn" lay-submit="" lay-filter="data-search-btn">搜索</a>
                         </div>
                     </div>
                 </form>
             </div>
+            
+            
         </fieldset>
 
         <div class="layui-btn-group">
-            <button class="layui-btn data-add-btn">添加</button>
-            <button class="layui-btn layui-btn-danger data-delete-btn">删除</button>
+            <button class="layui-btn data-add-btn">批量操作</button>
         </div>
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+			<a class="layui-btn layui-btn-xs data-count-edit" lay-event="info">客户信息</a>
+			<a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit1">上次回访</a>
+            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">预约回访</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">放弃该客户</a>
         </script>
     </div>
 </div>
@@ -55,20 +66,20 @@
 
         table.render({
             elem: '#currentTableId',
+            height:350,
             url: '../Reserved/table5',
             cols: [[
                 {type: "checkbox", width: 50, fixed: "left"},
-                {field: 'revisitid', width: 100, title: '回访ID'},
-                {field: 'clientname', width: 100, title: '客户姓名'},
-                {field: 'createdate', width: 100, title: '创建日期'},
-                {field: 'operator', width: 100, title: '创建人'},
-                {field: 'date', width: 100, title: '预约时间'},
+                {field: 'clientname', width: 120, title: '客户姓名'},
+                {field: 'createdate', width: 120, title: '创建日期'},
+                {field: 'operator', width: 120, title: '创建人'},
+                {field: 'date', width: 120, title: '预约时间'},
                 {field: 'execoperator', width: 100, title: '预约处理人'},
                 {field: 'typename', width: 100, title: '预约类型'},
                 {field: 'statusname', width: 100, title: '处理状态'},
                 {field: 'execstatusname', width: 100, title: '执行状态'},
                 {field: 'result', width: 100, title: '结果'},
-                {title: '操作', minWidth: 150, templet: '#currentTableBar', fixed: "right", align: "center"}
+                {title: '操作', minWidth: 250, templet: '#currentTableBar', fixed: "right", align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 10,
@@ -78,14 +89,17 @@
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
             var txt = $('#seach');
-
+            var start_time = $('#start_time');
+            var end_time = $('#end_time');
             //执行搜索重载
             table.reload('currentTableId', {
                 page: {
                     curr: 1
                 }
                 , where: {
-                    txt: txt.val()
+                    txt: txt.val(),
+                    start_time:start_time.val(),
+                    end_time:end_time.val()
                 }
             }, 'data');
 
@@ -112,9 +126,15 @@
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
             if (obj.event === 'edit') {
-            	openFrame('editor9.jsp?id='+data.id);
-            } else if (obj.event === 'delete') {
-                myconfirm('是否删除？', function () {
+            	openFrame('editor7.jsp?clientid='+data.clientid);
+            } 
+            if (obj.event === 'edit1') {
+            	openFrame('editor8.jsp?id='+data.clientid);
+            } 
+            if (obj.event === 'info') {
+            	openFrame('editor1.jsp?id='+data.clientid);
+            }else if (obj.event === 'delete') {
+                myconfirm('是否放弃？', function () {
                     $.post("../Reserved/delete", {id : data.id}, 
 							function(json) {
 								reload('currentTableId');
@@ -128,6 +148,17 @@
 </script>
 <script>
 
+layui.use('laydate', function() {
+	var laydate = layui.laydate;
+
+	//常规用法
+	laydate.render({
+		elem : '#start_time'
+	});
+	laydate.render({
+		elem : '#end_time'
+	});
+});
 </script>
 
 </body>

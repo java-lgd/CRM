@@ -2,6 +2,8 @@ package service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import entity.C_revisit;
 
 public interface C_revisit_Service {
@@ -19,4 +21,10 @@ public interface C_revisit_Service {
 	 public Integer insert(C_revisit t);
 
 	 public Integer update(C_revisit t);
+	 
+	 public C_revisit getByclientid(int clientid);
+	 
+	 public  List<C_revisit> getWhere1(int clientid,String limit);
+	 
+	 public int getSize1(int clientid);
 }

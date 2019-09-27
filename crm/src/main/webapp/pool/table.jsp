@@ -18,7 +18,7 @@
         <fieldset class="layui-elem-field layuimini-search">
             <legend>搜索信息</legend>
             <div style="margin: 10px 10px 10px 10px">
-                <form class="layui-form layui-form-pane" action="../Client/index">
+                <form class="layui-form layui-form-pane" action="../Client/table">
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <label class="layui-form-label">名称</label>
@@ -34,28 +34,35 @@
             </div>
         </fieldset>
 
+<table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+<script type="text/html" id="currentTable">
         <div class="layui-btn-group">
-            <button class="layui-btn data-add-btn">添加</button>
-            <button class="layui-btn layui-btn-danger data-delete-btn">删除</button>
+            <button class="layui-btn layui-btn-sm data-add-btn">添加</button>
+            <button class="layui-btn layui-btn-sm" lay-event="import">批量导入</button>
+			<button class="layui-btn layui-btn-sm enjoy" lay-event="enjoy">批量分配</button>
         </div>
-        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+</script>
+        
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+			<a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit1">修改</a>
+            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">分配</a>
         </script>
     </div>
 </div>
 <script src="../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="../js/my.js"></script>
 <script>
-    layui.use(['form', 'table'], function () {
+    layui.use(['form', 'table','upload'], function () {
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table;
-
+        var upload = layui.upload;
+        
         table.render({
             elem: '#currentTableId',
+            height:350,
             url: '../Client/table',
+            toolbar:'#currentTable',
             cols: [[
                 {type: "checkbox", width: 50, fixed: "left"},
                 {field: 'name', width: 100, title: '姓名'},
@@ -102,37 +109,40 @@
 
         // 监听添加操作
         $(".data-add-btn").on("click", function () {
-            openFrame("editor.jsp");
+            openFrame("customer_add.jsp");
         });
 
-        // 监听删除操作
-        $(".data-delete-btn").on("click", function () {
-            var checkStatus = table.checkStatus('currentTableId')
-                , data = checkStatus.data;
-            layer.alert(JSON.stringify(data));
-        });
-
+        table.on('toolbar(currentTableFilter)', function(obj) {
+			var data = obj.data;
+			if (obj.event === 'enjoy') {
+				var checkStatus = table.checkStatus("currentTableId");
+				var str="";
+				for(var i=0;i<checkStatus.data.length;i++){
+					str+=checkStatus.data[i].id+","	
+				}
+				openFrame('edit.jsp?str='+str);
+			}
+			if (obj.event === 'import') {
+            	openFrame('clientimport.html');
+            }
+		});
         //监听表格复选框选择
         table.on('checkbox(currentTableFilter)', function (obj) {
-            console.log(obj)
+        	
         });
 
         table.on('tool(currentTableFilter)', function (obj) {
-            var data = obj.data;
+            var data = obj.data; 
             if (obj.event === 'edit') {
-            	openFrame('editor.jsp?id='+data.id);
-            } else if (obj.event === 'delete') {
-                myconfirm('是否删除？', function () {
-                    $.post("../Client/delete", {id : data.id}, 
-							function(json) {
-								reload('currentTableId');
-								layer.close(layer.index);
-							}, "json");
-                });
+            	openFrame('customer_fenpei.jsp?id='+data.id);
+            }if (obj.event === 'edit1') {
+            	openFrame('customer_editor.jsp?id='+data.id);
             }
+           
         });
-
+        
     });
+   
 </script>
 </body>
 </html>

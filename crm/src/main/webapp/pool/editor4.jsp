@@ -29,37 +29,37 @@
   <div class="layui-form-item">
     <label class="layui-form-label">姓名</label>
     <div class="layui-input-block">
-      <input type="text" name="name"  autocomplete="off" placeholder="请输入姓名" class="layui-input">
+      <input type="text" name="name" readonly="readonly" autocomplete="off" placeholder="请输入标题" class="layui-input">
     </div>
   </div>
      <div class="layui-form-item">
     <label class="layui-form-label">性别</label>
     <div class="layui-input-block">
-      <select name="sex" >
+      <select name="sex" readonly="readonly">
       </select>
     </div>
   <div class="layui-form-item">
     <label class="layui-form-label">电话</label>
     <div class="layui-input-block">
-      <input type="text" name="tel"  autocomplete="off" placeholder="请输入电话" class="layui-input">
+      <input type="text" name="tel" readonly="readonly" autocomplete="off" placeholder="请输入电话" class="layui-input">
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">QQ</label>
     <div class="layui-input-block">
-      <input type="text" name="qq"  autocomplete="off" placeholder="请输入QQ" class="layui-input">
+      <input type="text" name="qq" readonly="readonly" autocomplete="off" placeholder="请输入密码" class="layui-input">
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">email</label>
     <div class="layui-input-block">
-      <input type="text" name="email"  autocomplete="off" placeholder="请输入email" class="layui-input">
+      <input type="text" name="email" readonly="readonly" autocomplete="off" placeholder="请输入密码" class="layui-input">
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">其他信息</label>
     <div class="layui-input-block">
-      <input type="text" name="infos"  autocomplete="off" placeholder="其他信息" class="layui-input">
+      <input type="text" name="infos"  autocomplete="off" placeholder="请输入密码" class="layui-input">
     </div>
   </div>
    <div class="layui-form-item">
@@ -98,7 +98,7 @@
     </div>
   </div>
   <div class="layui-form-item">
-    <label class="layui-form-label">资料状态</label>
+    <label class="layui-form-label">客户状态</label>
     <div class="layui-input-block">
       <select name="status" >
       </select>
@@ -141,13 +141,13 @@
   <div class="layui-form-item">
     <label class="layui-form-label">回访次数</label>
     <div class="layui-input-block">
-      <input type="text" name="count"  autocomplete="off" placeholder="回访次数" class="layui-input">
+      <input type="text" name="count"  autocomplete="off" placeholder="请输入密码" class="layui-input">
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">备注</label>
     <div class="layui-input-block">
-      <input type="text" name="comments"  autocomplete="off" placeholder="备注" class="layui-input">
+      <input type="text" name="comments"  autocomplete="off" placeholder="请输入密码" class="layui-input">
     </div>
   </div>
   

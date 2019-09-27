@@ -44,13 +44,15 @@ public class C_reserved_Controller {
 	
 	//Ë½ÈË³Ø
 	@RequestMapping("table5")
-	public @ResponseBody ReturnInfo table5(String txt,Integer page,Integer limit,HttpServletRequest request,HttpSession session) {
+	public @ResponseBody ReturnInfo table5(String txt,String start_time,String end_time , Integer page,Integer limit,HttpServletRequest request,HttpSession session) {
 		ReturnInfo info = new ReturnInfo();
 		C_operator user = (C_operator) session.getAttribute("user");
 		System.out.println(user.getName());
 		String where = "where c_client.name like '%%' and c_reserved.operatorid="+user.getId();
 		if(txt!=null)
 			where = " where c_client.name like '%"+txt+"%' and c_reserved.operatorid="+user.getId();
+		if(start_time!=null&&start_time.length()>0)
+			where = where+" and c_reserved.createdate>="+"'"+start_time+"'"+" and c_reserved.createdate<="+"'"+end_time+"'";
 		String lim = info.getLimit(page, limit);
 		info.setData(service.getTable5(where, lim));
 		info.setCount(service.getSize(where));
@@ -63,9 +65,9 @@ public class C_reserved_Controller {
 		ReturnInfo info = new ReturnInfo();
 		C_operator user = (C_operator) session.getAttribute("user");
 		System.out.println(user.getName());
-		String where = "where c_client.name like '%%' and c_reserved.execoperatorid="+user.getId();
+		String where = "where c_client.name like '%%' and c_reserved.execoperatorid="+user.getId()+" and c_reserved.type=1 and c_reserved.status=0";
 		if(txt!=null)
-			where = " where c_client.name like '%"+txt+"%' and c_reserved.execoperatorid="+user.getId();
+			where = " where c_client.name like '%"+txt+"%' and c_reserved.execoperatorid="+user.getId()+" and c_reserved.type=1 and c_reserved.status=0";
 		String lim = info.getLimit(page, limit);
 		info.setData(service.getTable2(where, lim));
 		info.setCount(service.getSize(where));

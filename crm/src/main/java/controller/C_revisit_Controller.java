@@ -2,6 +2,8 @@ package controller;
 
 import java.util.List;
 
+import org.junit.runners.Parameterized.Parameter;
+import org.junit.runners.Parameterized.Parameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,10 +53,20 @@ public class C_revisit_Controller {
 		return "{\"status\":1}";
 	}
 	
+	@RequestMapping("select")
+	public @ResponseBody ReturnInfo select(int clientid,Integer page,Integer limit) {
+		ReturnInfo info = new ReturnInfo();
+		String lim = info.getLimit(page, limit);
+		info.setData(service.getWhere1(clientid,lim));
+		info.setCount(service.getSize1(clientid));
+		return info;
+	}
+	
 	@RequestMapping("edit")
 	public @ResponseBody C_revisit edit(int id){
 		return service.getByid(id);
 	}
+	
 	
 	@RequestMapping("getLinkname")
 	public @ResponseBody String[] getLinkname(){

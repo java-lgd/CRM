@@ -18,30 +18,39 @@
         <fieldset class="layui-elem-field layuimini-search">
             <legend>搜索信息</legend>
             <div style="margin: 10px 10px 10px 10px">
-                <form class="layui-form layui-form-pane" action="../Client/index">
+                <form class="layui-form layui-form-pane" action="../Client/table6">
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <label class="layui-form-label">名称</label>
                             <div class="layui-input-inline">
                                 <input id="seach" type="text" name="name" autocomplete="off" class="layui-input">
                             </div>
-                        </div>
+			<label class="layui-form-label">活动时间</label>
+				<div class="layui-input-inline">
+						<input type="text" id="start_time" name="start_time" autocomplete="off" placeholder="请输入开始时间" class="layui-input">
+				</div>
+				<div class="layui-input-inline">
+						<input type="text" id="end_time" name="end_time" autocomplete="off" placeholder="请输入结束时间" class="layui-input">
+				</div>
+			</div>
                         <div class="layui-inline">
                             <a class="layui-btn" lay-submit="" lay-filter="data-search-btn">搜索</a>
                         </div>
                     </div>
                 </form>
             </div>
+            
+            
+            
         </fieldset>
 
         <div class="layui-btn-group">
-            <button class="layui-btn data-add-btn">添加</button>
-            <button class="layui-btn layui-btn-danger data-delete-btn">删除</button>
+            <button class="layui-btn data-add-btn">分配</button>
         </div>
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">客户信息</a>
+            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit1">预约记录</a>
         </script>
     </div>
 </div>
@@ -55,6 +64,7 @@
 
         table.render({
             elem: '#currentTableId',
+            height:350,
             url: '../Client/table6',
             cols: [[
                 {type: "checkbox", width: 50, fixed: "left"},
@@ -64,19 +74,7 @@
                 {field: 'qq', width: 100, title: 'QQ'},
                 {field: 'email', width: 100, title: 'email'},
                 {field: 'infos', width: 100, title: '其他信息'},
-                {field: 'linkname', width: 100, title: '联通状态'},
-                {field: 'clientsname', width: 100, title: '客户状态'},
-                {field: 'purposename', width: 100, title: '意向状态'},
-                {field: 'assessname', width: 100, title: '评估状态'},
-                {field: 'execname', width: 100, title: '处理状态'},
-                {field: 'statusname', width: 100, title: '状态'},
-                {field: 'clientname', width: 100, title: '客户类型'},
-                {field: 'operatornames', width: 100, title: '处理人'},
-                {field: 'operatorname', width: 100, title: '创建人'},
-                {field: 'createdate', width: 100, title: '创建时间'},
-                {field: 'srcid', width: 100, title: '来源'},
-                {field: 'comments', width: 100, title: '备注'},
-                {title: '操作', minWidth: 150, templet: '#currentTableBar', fixed: "right", align: "center"}
+                {title: '操作', minWidth: 200, templet: '#currentTableBar', fixed: "right", align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 10,
@@ -120,8 +118,11 @@
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
             if (obj.event === 'edit') {
-            	openFrame('editor.jsp?id='+data.id);
-            } else if (obj.event === 'delete') {
+            	openFrame('editor4.jsp?id='+data.id);
+            }
+            if (obj.event === 'edit1') {
+            	openFrame('editor10.jsp?clientid='+data.id);
+            }else if (obj.event === 'delete') {
                 myconfirm('是否删除？', function () {
                     $.post("../Client/delete", {id : data.id}, 
 							function(json) {
@@ -132,6 +133,18 @@
             }
         });
 
+    });
+    
+    layui.use('laydate', function() {
+    	var laydate = layui.laydate;
+
+    	//常规用法
+    	laydate.render({
+    		elem : '#start_time'
+    	});
+    	laydate.render({
+    		elem : '#end_time'
+    	});
     });
 </script>
 </body>

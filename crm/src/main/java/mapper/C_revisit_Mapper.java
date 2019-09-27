@@ -35,4 +35,12 @@ public interface C_revisit_Mapper {
 	 @Update("update C_revisit set clientid=#{clientid},linkstatus=#{linkstatus},clientstatus=#{clientstatus},purposestatus=#{purposestatus},assessstatus=#{assessstatus},execstatus=#{execstatus},askinfo=#{askinfo},followinfo=#{followinfo},probleminfo=#{probleminfo},status=#{status},comments=#{comments} where id=#{id}")
 	 public Integer update(C_revisit t);
 
+	 @Select("select C_revisit.*,c_client.name clientname from  C_revisit inner join C_client on C_revisit.clientid=C_client.id  where C_revisit.clientid=#{clientid}")
+	public  C_revisit getByclientid(int clientid);
+
+	 @Select("select C_revisit.*,c_client.name clientname from  C_revisit inner join C_client on C_revisit.clientid=C_client.id  where C_revisit.clientid=${clientid} ${limit}")
+	 public  List<C_revisit> getWhere1(@Param("clientid") int clientid, @Param("limit")String limit);
+	 
+	 @Select("select count(*) from  C_revisit where clientid=#{clientid}")
+		public int getSize1(@Param("clientid") int clientid);
 }

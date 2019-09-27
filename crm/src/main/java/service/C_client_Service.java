@@ -3,7 +3,6 @@ package service;
 import java.util.List;
 
 import entity.C_client;
-import entity.C_operator;
 
 public interface C_client_Service {
 	
@@ -26,6 +25,8 @@ public interface C_client_Service {
 	public Integer insert(C_client t);
 
 	public Integer update(C_client t);
+	
+	public Integer update1(Integer id,String operatorids,String operatornames);
 
 
 }
