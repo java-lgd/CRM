@@ -18,10 +18,6 @@
 .layui-input{width:200px;}
 </style>
 
-<c:if test="${param.id==null}">
-<form class="layui-form" lay-filter="myform" action="../Client/insert">
-</c:if>
-
 <c:if test="${param.id!=null}">
 <form class="layui-form" lay-filter="myform" action="../Client/update">
 <input type="hidden" name="id" >
@@ -60,7 +56,7 @@
   <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">其他信息</label>
     <div class="layui-input-block">
-      <textarea type="text" name="infos"  autocomplete="off" placeholder="请输入密码" class="layui-textarea"></textarea>
+      <input type="text" name="infos"  autocomplete="off" placeholder="请输入密码" class="layui-input">
     </div>
   </div>
   <div class="layui-form-item" style="display:none;">
@@ -122,8 +118,8 @@
   <div class="layui-form-item">
     <label class="layui-form-label">处理人</label>
     <div class="layui-input-block">
-    	<input type="hidden" name="operatorids">
-		<input type="text" name="operatornames"  autocomplete="off" placeholder="请输入" class="layui-input" id="demo">   
+    	<input type="hidden" name="operatorids" value="">
+		<input type="text" name="operatornames" value="" readonly="readonly" autocomplete="off" placeholder="请输入" class="layui-input" id="demo">   
     </div>
   </div>
   <div class="layui-form-item" style="display:none;">
@@ -136,13 +132,13 @@
   <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">创建时间</label>
     <div class="layui-input-block">
-     <input type="text" name="createdate" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+     <input type="text" name="createdate" readonly="readonly" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
     </div>
   </div>
   <div class="layui-form-item" style="display:none;">
     <label class="layui-form-label">回访次数</label>
     <div class="layui-input-block">
-      <input type="text" name="count"  autocomplete="off" placeholder="请输入密码" class="layui-input">
+      <input type="text" name="count" readonly="readonly" autocomplete="off" placeholder="请输入" class="layui-input">
     </div>
   </div>
   <div class="layui-form-item" >
@@ -154,7 +150,7 @@
   
    <div class="layui-form-item">
     <div class="layui-input-block">
-      <button class="layui-btn" lay-submit="" lay-filter="demo1">保存</button>
+      <button class="layui-btn" lay-submit="" lay-filter="demo1">确认放弃</button>
     </div>
   </div>
 </form>

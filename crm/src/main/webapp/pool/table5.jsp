@@ -50,9 +50,8 @@
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
         <script type="text/html" id="currentTableBar">
 			<a class="layui-btn layui-btn-xs data-count-edit" lay-event="info">客户信息</a>
-			<a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit1">上次回访</a>
-            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">预约回访</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">放弃该客户</a>
+			<a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit1">回访记录</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">转公共池</a>
         </script>
     </div>
 </div>
@@ -79,7 +78,7 @@
                 {field: 'statusname', width: 100, title: '处理状态'},
                 {field: 'execstatusname', width: 100, title: '执行状态'},
                 {field: 'result', width: 100, title: '结果'},
-                {title: '操作', minWidth: 250, templet: '#currentTableBar', fixed: "right", align: "center"}
+                {title: '操作', minWidth: 300, templet: '#currentTableBar', fixed: "right", align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 10,
@@ -125,22 +124,13 @@
 
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
-            if (obj.event === 'edit') {
-            	openFrame('editor7.jsp?clientid='+data.clientid);
-            } 
             if (obj.event === 'edit1') {
-            	openFrame('editor8.jsp?id='+data.clientid);
+            	openFrame('revisit-list.jsp?clientid='+data.clientid,"回访记录");
             } 
             if (obj.event === 'info') {
-            	openFrame('editor1.jsp?id='+data.clientid);
+            	openFrame('customer_look.jsp?id='+data.clientid,"客户信息");
             }else if (obj.event === 'delete') {
-                myconfirm('是否放弃？', function () {
-                    $.post("../Reserved/delete", {id : data.id}, 
-							function(json) {
-								reload('currentTableId');
-								layer.close(layer.index);
-							}, "json");
-                });
+            	openFrame('customer_fenpei2.jsp?id='+data.clientid,"转公共池");
             }
         });
 

@@ -20,77 +20,89 @@
 <form class="layui-form" lay-filter="myform" action="../Revisit/update">
 	<input type="hidden" name="id" value="${param.id}">
      <div class="layui-form-item">
+     <div class="layui-inline">
     <label class="layui-form-label">客户姓名</label>
     <div class="layui-input-block">
       <select name="clientid" disabled="disabled">
       </select>
     </div>
     </div>
+    
+    <div class="layui-inline">
+			<label class="layui-form-label">日期</label>
+			<div class="layui-input-block">
+				<input type="text" name="date" class="layui-input" id="test1"
+					placeholder="yyyy-MM-dd">
+			</div>
+		</div>
   
-   <div class="layui-form-item">
+   <div class="layui-inline">
     <label class="layui-form-label">联通状态</label>
     <div class="layui-input-block">
       <select name="linkstatus" >
       </select>
     </div>
   </div>
+  </div>
    <div class="layui-form-item">
+   <div class="layui-inline">
     <label class="layui-form-label">客户状态</label>
     <div class="layui-input-block">
       <select name="clientstatus" >
       </select>
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-inline">
     <label class="layui-form-label">意向状态</label>
     <div class="layui-input-block">
       <select name="purposestatus" >
       </select>
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-inline">
     <label class="layui-form-label">评估状态</label>
     <div class="layui-input-block">
       <select name="assessstatus" >
       </select>
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-inline">
     <label class="layui-form-label">状态</label>
     <div class="layui-input-block">
       <select name="execstatus">
       </select>
     </div>
   </div>
-  
+  </div>
   <div class="layui-form-item">
     <label class="layui-form-label">询问状况</label>
     <div class="layui-input-block">
-		 <input type="text" name="askinfo"  autocomplete="off" placeholder="请输入" class="layui-input">   
+		 <textarea type="text" name="askinfo"  autocomplete="off" placeholder="请输入" class="layui-textarea"> </textarea>  
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">跟进措施</label>
     <div class="layui-input-block">
-		 <input type="text" name="followinfo"  autocomplete="off" placeholder="请输入" class="layui-input">   
+		 <textarea type="text" name="followinfo"  autocomplete="off" placeholder="请输入" class="layui-textarea">   </textarea>
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">客户顾虑</label>
     <div class="layui-input-block">
-     <input type="text" name="probleminfo" autocomplete="off" placeholder="请输入" class="layui-input">
+     <textarea type="text" name="probleminfo" autocomplete="off" placeholder="请输入" class="layui-textarea"></textarea>
     </div>
   </div>
   <div class="layui-form-item">
-    <label class="layui-form-label">状态（正常、隐藏）</label>
+    <label class="layui-form-label">状态</label>
     <div class="layui-input-block">
-      <input type="text" name="status"   autocomplete="off" placeholder="请输入" class="layui-input">
+    <select name="status" >
+      </select>
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">备注</label>
     <div class="layui-input-block">
-      <input type="text" name="comments"   autocomplete="off" placeholder="请输入" class="layui-input">
+      <textarea type="text" name="comments"   autocomplete="off" placeholder="请输入" class="layui-textarea"></textarea>
     </div>
   </div>
   
@@ -134,6 +146,7 @@ function init(){
 		getarray("../Revisit/getAssessname","[name=assessstatus]",json.assessstatus);
 		getarray("../Revisit/getExecname","[name=execstatus]",json.execstatus);
 		getlist("../Revisit/getClient","[name=clientid]",json.clientid);
+		getlist("../Revisit/getStatusname","[name=status]",json.status);
 	},"json");
 	
 }
@@ -146,6 +159,7 @@ if(id.length>0){
 	getarray("../Revisit/getAssessname","[name=assessstatus]",0);
 	getarray("../Revisit/getExecname","[name=execstatus]",0);
 	getlist("../Revisit/getClient","[name=clientid]",clientid);
+	getlist("../Revisit/getStatusname","[name=status]",0);
 }
 
 </script>

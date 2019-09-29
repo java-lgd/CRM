@@ -26,91 +26,99 @@
 <input type="hidden" name="id" >
 </c:if>
   <div class="layui-form-item">
+  <div class="layui-inline">
     <label class="layui-form-label">客户姓名</label>
     <div class="layui-input-block">
       <select name="clientid" >
       </select>
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-inline">
     <label class="layui-form-label">创建时间</label>
     <div class="layui-input-block">
     <input type="text" name="createdate" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-inline">
     <label class="layui-form-label">业绩时间</label>
     <div class="layui-input-block">
     <input type="text" name="compdate" class="layui-input" id="test2" placeholder="yyyy-MM-dd">
     </div>
   </div>
    <div class="layui-form-item">
+   <div class="layui-inline">
     <label class="layui-form-label">合同时间</label>
     <div class="layui-input-block">
     <input type="text" name="orderdate" class="layui-input" id="test3" placeholder="yyyy-MM-dd">
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-inline">
     <label class="layui-form-label">起始时间</label>
     <div class="layui-input-block">
     <input type="text" name="startdate" class="layui-input" id="test4" placeholder="yyyy-MM-dd">
     </div>
   </div>
-  <div class="layui-form-item">
+  <div class="layui-inline">
     <label class="layui-form-label">截止时间</label>
     <div class="layui-input-block">
     <input type="text" name="enddate" class="layui-input" id="test5" placeholder="yyyy-MM-dd">
     </div>
   </div>
   <div class="layui-form-item">
+  <div class="layui-inline">
     <label class="layui-form-label">操作员</label>
     <div class="layui-input-block">
       <select name="operatorid" >
       </select>
     </div>
   </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">额外信息</label>
-    <div class="layui-input-block">
-      <input type="text" name="info"  autocomplete="off" placeholder="请输入" class="layui-input">
-    </div>
-  </div>
-  <div class="layui-form-item">
+  <div class="layui-inline">
     <label class="layui-form-label">文件</label>
     <div class="layui-input-block">
       <input type="text" name="files"  autocomplete="off" placeholder="请输入" class="layui-input">
     </div>
   </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">业绩人员</label>
-    <div class="layui-input-block">
-    	<input type="hidden" name="compoperatorids">
-		<input type="text" name="compoperatornames" readonly="readonly" autocomplete="off" placeholder="请输入" class="layui-input" id="demo">   
-    </div>
-  </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">业绩权重</label>
-    <div class="layui-input-block">
-      <input type="text" name="compweight"  autocomplete="off" placeholder="请输入" class="layui-input">
-    </div>
-  </div>
-   <div class="layui-form-item">
+  <div class="layui-inline">
     <label class="layui-form-label">状态</label>
     <div class="layui-input-block">
       <select name="status" >
       </select>
     </div>
   </div>
+  </div>
   <div class="layui-form-item">
+    <label class="layui-form-label">额外信息</label>
+    <div class="layui-input-block">
+      <textarea type="text" name="info"  autocomplete="off" placeholder="请输入" class="layui-textarea"></textarea>
+    </div>
+  </div>
+  
+  <div class="layui-form-item">
+  <div class="layui-inline">
+    <label class="layui-form-label">业绩人员</label>
+    <div class="layui-input-block">
+    	<input type="hidden" name="compoperatorids">
+		<input type="text" name="compoperatornames" readonly="readonly" autocomplete="off" placeholder="请输入" class="layui-input" id="demo">   
+    </div>
+  </div>
+  <div class="layui-inline">
+    <label class="layui-form-label">业绩权重</label>
+    <div class="layui-input-block">
+      <input type="text" name="compweight"  autocomplete="off" placeholder="请输入" class="layui-input">
+    </div>
+  </div>
+   
+ <div class="layui-inline">
     <label class="layui-form-label">总金额</label>
     <div class="layui-input-block">
       <input type="text" name="amount"  autocomplete="off" placeholder="请输入" class="layui-input">
     </div>
   </div>
+  </div>
   <div class="layui-form-item">
     <label class="layui-form-label">备注</label>
     <div class="layui-input-block">
-      <input type="text" name="comments"  autocomplete="off" placeholder="请输入" class="layui-input">
+      <textarea type="text" name="comments"  autocomplete="off" placeholder="请输入" class="layui-textarea"></textarea>
     </div>
   </div>
   

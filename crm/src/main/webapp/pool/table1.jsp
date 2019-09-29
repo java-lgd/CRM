@@ -105,18 +105,10 @@
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
             if (obj.event === 'edit1') {
-            	openFrame('revisit-list.jsp?clientid='+data.id);
+            	openFrame('revisit-list.jsp?clientid='+data.id,"回访记录");
             }
             if (obj.event === 'info') {
-            	openFrame('customer_look.jsp?id='+data.id);
-            }else if (obj.event === 'delete') {
-                myconfirm('是否删除？', function () {
-                    $.post("../Client/delete", {id : data.id}, 
-							function(json) {
-								reload('currentTableId');
-								layer.close(layer.index);
-						}, "json");
-                });
+            	openFrame('customer_look.jsp?id='+data.id,"客户信息");
             }
         });
 

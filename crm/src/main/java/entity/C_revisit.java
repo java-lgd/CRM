@@ -4,6 +4,7 @@ public class C_revisit{
 
 	private Integer id;
 	private Integer clientid;
+	private String date;
 	private String clientname;
 	private Integer linkstatus;
 	public static String[] links = {"秒挂","未通","有交流","深入交流"};
@@ -34,6 +35,10 @@ public class C_revisit{
 	private String followinfo;
 	private String probleminfo;
 	private Integer status;
+	public static String[] statuses = {"正常","隐藏"};
+	public String getStatusname() {
+		return statuses[status];
+	}
 	private String comments;
 	public Integer getId() {
 		return id;
@@ -137,6 +142,14 @@ public class C_revisit{
 
 	public void setClientname(String clientname) {
 		this.clientname = clientname;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 }

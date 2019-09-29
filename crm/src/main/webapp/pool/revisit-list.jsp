@@ -48,6 +48,7 @@
             height:450,
             cols: [[
                 {field: 'clientname', width: 100, title: '客户姓名'},
+                {field: 'date', width: 100, title: '时间'},
                 {field: 'linkname', width: 100, title: '联通状态'},
                 {field: 'clientsname', width: 100, title: '客户状态'},
                 {field: 'purposename', width: 100, title: '意向状态'},
@@ -103,7 +104,7 @@
             	openFrame('revisit_edit.jsp?id='+data.id);
             }
             if(obj.event === 'reserved') { ///lay-event 属性
-            	openFrame('reserved_edit.jsp?revisitid=' + data.id+'&clientid=' + data.clientid +'&clientname=' + data.clientname);
+            	openFrame('reserved_edit.jsp?revisitid=' + data.id+'&clientid=' + data.clientid +'&clientname=' + data.clientname,"添加预约");
 			} 
         });
         
@@ -113,7 +114,7 @@
 				reload('currentTableId', {});
 			}
 			if (obj.event === 'add') {
-            	openFrame("revisit_add.jsp?clientid="+clientid);
+            	openFrame("revisit_add.jsp?clientid="+clientid,"添加回访");
             }
 		});
 

@@ -37,7 +37,7 @@
 <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 <script type="text/html" id="currentTable">
         <div class="layui-btn-group">
-            <button class="layui-btn layui-btn-sm data-add-btn">添加</button>
+            <button class="layui-btn layui-btn-sm data-add-btn">添加客户</button>
             <button class="layui-btn layui-btn-sm" lay-event="import">批量导入</button>
 			<button class="layui-btn layui-btn-sm enjoy" lay-event="enjoy">批量分配</button>
         </div>
@@ -109,7 +109,7 @@
 
         // 监听添加操作
         $(".data-add-btn").on("click", function () {
-            openFrame("customer_add.jsp");
+            openFrame("customer_add.jsp","添加客户");
         });
 
         table.on('toolbar(currentTableFilter)', function(obj) {
@@ -120,10 +120,10 @@
 				for(var i=0;i<checkStatus.data.length;i++){
 					str+=checkStatus.data[i].id+","	
 				}
-				openFrame('edit.jsp?str='+str);
+				openFrame('edit.jsp?str='+str,"批量分配");
 			}
 			if (obj.event === 'import') {
-            	openFrame('clientimport.html');
+            	openFrame('clientimport.html',"批量导入");
             }
 		});
         //监听表格复选框选择
@@ -134,9 +134,9 @@
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data; 
             if (obj.event === 'edit') {
-            	openFrame('customer_fenpei.jsp?id='+data.id);
+            	openFrame('customer_fenpei.jsp?id='+data.id,"分配客户");
             }if (obj.event === 'edit1') {
-            	openFrame('customer_editor.jsp?id='+data.id);
+            	openFrame('customer_editor.jsp?id='+data.id,"修改客户信息");
             }
            
         });

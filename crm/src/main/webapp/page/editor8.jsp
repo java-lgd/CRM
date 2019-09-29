@@ -33,6 +33,14 @@
       </select>
     </div>
   
+  		<div class="layui-form-item">
+			<label class="layui-form-label">日期</label>
+			<div class="layui-input-block">
+				<input type="text" name="date" class="layui-input" id="test1"
+					placeholder="yyyy-MM-dd">
+			</div>
+		</div>
+		
    <div class="layui-form-item">
     <label class="layui-form-label">联通状态</label>
     <div class="layui-input-block">
@@ -88,9 +96,10 @@
     </div>
   </div>
   <div class="layui-form-item">
-    <label class="layui-form-label">状态（正常、隐藏）</label>
+    <label class="layui-form-label">状态</label>
     <div class="layui-input-block">
-      <input type="text" name="status"  autocomplete="off" placeholder="请输入" class="layui-input">
+      <select name="status" >
+      </select>
     </div>
   </div>
   <div class="layui-form-item">
@@ -140,6 +149,7 @@ function init(){
 		getarray("../Revisit/getAssessname","[name=assessstatus]",json.assessstatus);
 		getarray("../Revisit/getExecname","[name=execstatus]",json.execstatus);
 		getlist("../Revisit/getClient","[name=clientid]",json.clientid);
+		getlist("../Revisit/getStatusname","[name=status]",json.status);
 	},"json");
 	
 }
@@ -152,6 +162,7 @@ if(id.length>0){
 	getarray("../Revisit/getAssessname","[name=assessstatus]",0);
 	getarray("../Revisit/getExecname","[name=execstatus]",0);
 	getlist("../Revisit/getClient","[name=clientid]",0);
+	getlist("../Revisit/getStatusname","[name=status]",0);
 }
 
 </script>

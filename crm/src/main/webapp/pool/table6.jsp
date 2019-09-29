@@ -100,7 +100,7 @@
 
         // 监听添加操作
         $(".data-add-btn").on("click", function () {
-            openFrame("editor.jsp");
+            openFrame("editor.jsp","分配客户");
         });
 
         // 监听删除操作
@@ -118,10 +118,10 @@
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
             if (obj.event === 'edit') {
-            	openFrame('editor4.jsp?id='+data.id);
+            	openFrame('editor4.jsp?id='+data.id,"客户信息");
             }
             if (obj.event === 'edit1') {
-            	openFrame('editor10.jsp?clientid='+data.id);
+            	openFrame('editor10.jsp?clientid='+data.id,"回访记录");
             }else if (obj.event === 'delete') {
                 myconfirm('是否删除？', function () {
                     $.post("../Client/delete", {id : data.id}, 

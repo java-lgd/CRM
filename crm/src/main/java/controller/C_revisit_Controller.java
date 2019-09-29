@@ -81,7 +81,7 @@ public class C_revisit_Controller {
 		return C_revisit.purposes;
 	}
 	@RequestMapping("getAssessname")
-	public @ResponseBody String[] getAssessname(){
+	public @ResponseBody  String[] getAssessname(){
 		return C_revisit.assess;
 	}
 	@RequestMapping("getExecname")
@@ -91,5 +91,10 @@ public class C_revisit_Controller {
 	@RequestMapping("getClient")
 	public @ResponseBody  List<C_client> getClient(){
 		return cservice.getAll();
+	}
+	
+	@RequestMapping("getStatusname")
+	public @ResponseBody  String[] getStatusname(){
+		return C_revisit.statuses;
 	}
 }

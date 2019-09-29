@@ -117,18 +117,10 @@
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
             if (obj.event === 'edit') {
-            	openFrame('editor4.jsp?id='+data.clientid);
+            	openFrame('editor4.jsp?id='+data.clientid,"客户信息");
             }
             if (obj.event === 'edit1') {
-            	openFrame('editor6.jsp?id='+data.id);
-            }else if (obj.event === 'delete') {
-                myconfirm('是否删除？', function () {
-                    $.post("../Order/delete", {id : data.id}, 
-							function(json) {
-								reload('currentTableId');
-								layer.close(layer.index);
-							}, "json");
-                });
+            	openFrame('editor6.jsp?id='+data.id,"合同信息");
             }
         });
 
